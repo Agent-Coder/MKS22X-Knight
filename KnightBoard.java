@@ -1,9 +1,10 @@
 
 public class KnightBoard{
   private int[][] sequence;
-  public KnightBoard(int size){
+  public KnightBoard(int sizer,int sizec){
+    sequence=new int[sizer][sizec];
     for (int i=0;i<sequence.length;i++){
-      for (int j=0;j<sequence.length;j++){
+      for (int j=0;j<sequence[0].length;j++){
         sequence[i][j]=0;
       }
     }
@@ -17,7 +18,14 @@ public class KnightBoard{
   //@throws IllegalStateException when the board contains non-zero values.
   //@throws IllegalArgumentException when either parameter is negative or out of bounds.
   public boolean solve(int startingRow, int startingCol){
-    return solveKnight();
+    return solveKnight(startingRow,startingCol);
+  }
+  public boolean SolveKnight(int r,int c,){
+
+  }
+  public boolean addKnight(int r,int c){
+    boolean place=false;
+    if (r+2<board.length&&)
   }
 
   //@throws IllegalStateException when the board contains non-zero values.
