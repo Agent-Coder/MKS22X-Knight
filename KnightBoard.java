@@ -12,6 +12,19 @@ public class KnightBoard{
   //blank boards display 0's as underscores
   //you get a blank board if you never called solve or when there is no solution
   public String toString(){
+    String s="";
+    for (int i=0;i<sequence.length;i++){
+      s+="\n"
+      for (int j=0;j<sequence[0].length;j++){
+        if (sequence[i][j]>9){
+          s+="_"+sequence[i][j]+" ";
+        }
+        else{
+          s+=sequence[i][j]+" ";
+        }
+      }
+    }
+    return s;
   }
 
 
@@ -23,9 +36,14 @@ public class KnightBoard{
   public boolean SolveKnight(int r,int c,){
 
   }
-  public boolean addKnight(int r,int c){
+  public boolean addKnight(int r,int c,int amount){
     boolean place=false;
-    if (r+2<board.length&&)
+    if(amount==0){
+    if (r+2<board.length){
+
+
+      }
+    }
   }
 
   //@throws IllegalStateException when the board contains non-zero values.
