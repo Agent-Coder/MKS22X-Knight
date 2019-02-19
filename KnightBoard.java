@@ -34,7 +34,7 @@ public class KnightBoard{
     for (int i=0;i<sequence.length;i++){
       s+="\n";
       for (int j=0;j<sequence[0].length;j++){
-        if (sequence[i][j]>9){
+        if (sequence[i][j]<9){
           s+="_"+sequence[i][j]+" ";
         }
         else{
@@ -78,15 +78,16 @@ public class KnightBoard{
     }
     for (int i=0;i<8;i++){
       if(addKnight(row+moves[2*i],col+moves[2*i+1],level)){
-          return solveH(row+moves[2*i],col+moves[2*i+1],level+1);
-        }
+        System.out.println(this.toString());
+        return solveH(row+moves[2*i],col+moves[2*i+1],level+1);
+      }
     }
     removeKnight(row,col);
     return false;
   }
   //level is the # of the knight
   public static void main(String[] args) {
-    KnightBoard k=new KnightBoard(3,3);
-    System.out.println(k.solve(0,0));
+    KnightBoard k=new KnightBoard(5,5);
+    System.out.println(k.solveH(0,0,0));
   }
 }
