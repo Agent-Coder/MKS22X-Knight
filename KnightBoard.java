@@ -76,19 +76,10 @@ public class KnightBoard{
     if(level==sequence.length*sequence[0].length+1){
       return true;
     }
-    if(addKnight(row,col,level)){
-        for (int i=0;i<8;i++)
-      }
-      return false;
-
-
-            //solveH(row+2 ,col-1,level+1)||
-            //solveH(row-2 ,col+1,level+1)||
-            //solveH(row-2 ,col-1,level+1)||
-            //solveH(row+1 ,col+2,level+1)||
-            //solveH(row+1 ,col-2,level+1)||
-            //solveH(row-1 ,col+2,level+1)||
-            //solveH(row-1 ,col-2,level+1);
+    for (int i=0;i<8;i++){
+      if(addKnight(r+moves[2*i],c+moves[2*i+1],level)){
+          return solveH(r+moves[2*i],c+moves[2*i+1],level+1);
+        }
     }
     removeKnight(row,col);
     return false;
