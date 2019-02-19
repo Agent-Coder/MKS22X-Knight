@@ -77,8 +77,8 @@ public class KnightBoard{
       return true;
     }
     for (int i=0;i<8;i++){
-      if(addKnight(r+moves[2*i],c+moves[2*i+1],level)){
-          return solveH(r+moves[2*i],c+moves[2*i+1],level+1);
+      if(addKnight(row+moves[2*i],col+moves[2*i+1],level)){
+          return solveH(row+moves[2*i],col+moves[2*i+1],level+1);
         }
     }
     removeKnight(row,col);
