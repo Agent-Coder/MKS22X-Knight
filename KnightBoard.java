@@ -1,6 +1,7 @@
 
 public class KnightBoard{
   private int[][] sequence;
+  private int[] moves;
   public KnightBoard(int sizer,int sizec){
     sequence=new int[sizer][sizec];
     for (int i=0;i<sequence.length;i++){
@@ -8,6 +9,23 @@ public class KnightBoard{
         sequence[i][j]=0;
       }
     }
+    moves=new int[16];
+    moves[0]=2;
+    moves[1]=1;
+    moves[2]=2;
+    moves[3]=-1;
+    moves[4]=-2;
+    moves[5]=1;
+    moves[6]=-2;
+    moves[7]=-1;
+    moves[8]=1;
+    moves[9]=2;
+    moves[10]=1;
+    moves[11]=-2;
+    moves[12]=-1;
+    moves[13]=2;
+    moves[14]=-1;
+    moves[15]=-2;
   }
   //blank boards display 0's as underscores
   //you get a blank board if you never called solve or when there is no solution
@@ -59,38 +77,7 @@ public class KnightBoard{
       return true;
     }
     if(addKnight(row,col,level)){
-      System.out.println(this.toString());
-      if (solveH(row+2 ,col+1,level+1)){
-        System.out.println("1"+this.toString());
-        return true;
-      }
-      if(solveH(row+2 ,col-1,level+1)){
-        System.out.println("2"+this.toString());
-        return true;
-      }
-      if(solveH(row-2 ,col+1,level+1)){
-        System.out.println("3"+this.toString());
-        return true;
-      }
-      if(solveH(row-2 ,col-1,level+1)){
-        System.out.println("4"+this.toString());
-        return true;
-      }
-      if(solveH(row+1 ,col+2,level+1)){
-        System.out.println("5"+this.toString());
-        return true;
-      }
-      if(solveH(row+1 ,col-2,level+1)){
-        System.out.println("6"+this.toString());
-        return true;
-      }
-      if(solveH(row-1 ,col+2,level+1)){
-        System.out.println("7"+this.toString());
-        return true;
-      }
-      if(solveH(row-1 ,col-2,level+1)){
-        System.out.println("8"+this.toString());
-        return true;
+        for (int i=0;i<8;i++)
       }
       return false;
 
