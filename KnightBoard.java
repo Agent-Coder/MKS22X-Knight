@@ -52,18 +52,28 @@ public class KnightBoard{
   //@throws IllegalStateException when the board contains non-zero values.
   //@throws IllegalArgumentException when either parameter is negative or out of bounds.
   public boolean solve(int startingRow, int startingCol){
-    return solveH(startingRow,startingCol,0);
+    if (solveH(startingRow,startingCol,0)){
+      return true;
+    }
+    else{
+      for (int i=0;i<sequence.length;i++){
+        for (int j=0;j<sequence[0].length;j++){
+          sequence[i][j]=0;
+        }
+      }
+      return false;
+    }
   }
 
   public boolean addKnight(int r,int c,int num){
-    if (r>=0&&r<sequence.length&&c>=0&&c<sequence.length&&sequence[r][c]==0){
+    if (r>=0&&r<sequence.length&&c>=0&&c<sequence[0].length&&sequence[r][c]==0){
       sequence[r][c]=num;
       return true;
     }
     return false;
   }
   public boolean removeKnight(int r,int c){
-    if (r>=0&&r<sequence.length&&c>=0&&c<sequence.length){
+    if (r>=0&&r<sequence.length&&c>=0&&c<sequence[0].length){
       sequence[r][c]=0;
       return true;
     }
@@ -94,7 +104,8 @@ public class KnightBoard{
   }
   //level is the # of the knight
   public static void main(String[] args) {
-    KnightBoard k=new KnightBoard(5,5);
+    KnightBoard k=new KnightBoard(3,3);
+    System.out.println(k.solveH(0,0,1));
     System.out.println(k);
   }
 }
