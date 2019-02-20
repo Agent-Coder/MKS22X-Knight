@@ -3,6 +3,9 @@ public class KnightBoard{
   private int[][] sequence;
   private int[] moves;
   public KnightBoard(int sizer,int sizec){
+    if (sizer<=0||sizec<=0){
+      throw new IllegalArgumentException();
+    }
     sequence=new int[sizer][sizec];
     for (int i=0;i<sequence.length;i++){
       for (int j=0;j<sequence[0].length;j++){
@@ -52,7 +55,17 @@ public class KnightBoard{
   //@throws IllegalStateException when the board contains non-zero values.
   //@throws IllegalArgumentException when either parameter is negative or out of bounds.
   public boolean solve(int startingRow, int startingCol){
-    if (solveH(startingRow,startingCol,0)){
+    for (int i=0;i<sequence.length;i++){
+      for (int j=0;j<sequence[0].length;j++){
+        if(sequence[i][j]==0){
+          throw new IllegalStateException();
+        }
+      }
+    }
+    if(startingRow<0&&startingCol<0){
+      throw new IllegalArgumentException();
+    }
+    if (solveH(startingRow,startingCol,1)){
       return true;
     }
     else{
@@ -82,7 +95,9 @@ public class KnightBoard{
 
   //@throws IllegalStateException when the sequence contains non-zero values.
   //@throws IllegalArgumentException when either parameter is negative or out of bounds.
-  //public int countSolutions(int startingRow, int startingCol)
+  public int countSolutions(int startingRow, int startingCol){
+
+  }
 
   //Suggestion:
   private boolean solveH(int row ,int col, int level){
@@ -105,7 +120,8 @@ public class KnightBoard{
   //level is the # of the knight
   public static void main(String[] args) {
     KnightBoard k=new KnightBoard(3,3);
-    System.out.println(k.solveH(0,0,1));
+    k.sequence[0][2]=1;
+    System.out.println(k.solve(0,0));
     System.out.println(k);
   }
 }
