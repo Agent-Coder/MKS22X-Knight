@@ -141,10 +141,10 @@ public class KnightBoard{
       return false;
   }
   //level is the # of the knight
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     KnightBoard k=new KnightBoard(8,8);
     System.out.println(k.solve(0,0));
     //System.out.println(k.countSolutions(0,0));
     System.out.println(k);
-  }
+  }*/
 }
