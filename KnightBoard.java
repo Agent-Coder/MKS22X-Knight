@@ -34,8 +34,11 @@ public class KnightBoard{
     for (int i=0;i<sequence.length;i++){
       s+="\n";
       for (int j=0;j<sequence[0].length;j++){
-        if (sequence[i][j]<9){
-          s+="_"+sequence[i][j]+" ";
+        if(sequence[i][j]==0){
+          s+="_ ";
+        }
+        else if (sequence[i][j]<=9){
+          s+=" "+sequence[i][j]+" ";
         }
         else{
           s+=sequence[i][j]+" ";
@@ -73,21 +76,25 @@ public class KnightBoard{
 
   //Suggestion:
   private boolean solveH(int row ,int col, int level){
-    if(level==sequence.length*sequence[0].length+1){
+    if(level>=sequence.length*sequence[0].length+1){
       return true;
     }
-    for (int i=0;i<8;i++){
-      if(addKnight(row+moves[2*i],col+moves[2*i+1],level)){
-        System.out.println(this.toString());
-        return solveH(row+moves[2*i],col+moves[2*i+1],level+1);
+    if(addKnight(row,col,level)){
+      for (int i=0;i<8;i++){
+        if(solveH(row+moves[2*i],col+moves[2*i+1],level+1)){
+          return true;
+        }
       }
+      removeKnight(row,col);
+      return false;
     }
-    removeKnight(row,col);
-    return false;
+    else{
+      return false;
+    }
   }
   //level is the # of the knight
   public static void main(String[] args) {
     KnightBoard k=new KnightBoard(5,5);
-    System.out.println(k.solveH(0,0,0));
+    System.out.println(k);
   }
 }
