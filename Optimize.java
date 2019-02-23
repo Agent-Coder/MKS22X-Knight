@@ -1,7 +1,10 @@
 public class Optimize{
   private int[][] board;
+  private int[][] game;
   public Optimize(int r, int c){
     board=new int[r][c];
+    game= new int[r][c];
+    game.clear();
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[0].length;j++){
         this.construct(i,j);
@@ -43,9 +46,9 @@ public class Optimize{
     }
   }
   public void clear(){
-    for(int i=0;i<board.length;i++){
-      for(int j=0;i<board[0].length;i++){
-        board[i][j]=0;
+    for(int i=0;i<game.length;i++){
+      for(int j=0;j<game[0].length;j++){
+        game[i][j]=0;
       }
     }
   }
