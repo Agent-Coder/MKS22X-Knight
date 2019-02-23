@@ -1,11 +1,11 @@
 public class Optimize{
   private int[][] board;
   private int[][] game;
-  private int[][] moves;
+  private int[] moves;
   public Optimize(int r, int c){
     board=new int[r][c];
     game= new int[r][c];
-    game.clear();
+    this.clear();
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[0].length;j++){
         this.construct(i,j);
@@ -114,23 +114,29 @@ public class Optimize{
     if(startingRow<0&&startingCol<0){
       throw new IllegalArgumentException();
     }
-    if (solveH(startingRow,startingCol,1)){
-      return true;
-    }
+  //  if (solveH(startingRow,startingCol,1)){
+    //  return true;
+    //}
     else{
-      for (int i=0;i<game.length;i++){
-        for (int j=0;j<game[0].length;j++){
-          game[i][j]=0;
-        }
-      }
+      this.clear();
       return false;
     }
   }
-  public void findLeast(){
+  public int findLeast(int r,int c){
+    int least=9;
+    int movenum;
+    int multiple=0
     for(int i=0;i<8;i++){
-      board[i][i]=5;
+      if(game[r+moves[2*i]][c+moves[2*i+1]]==0&&board[r+moves[2*i]][c+moves[2*i+1]]==least){
+        movenum=i;
+        multiple=-1;
     }
+    if(game[r+moves[2*i]][c+moves[2*i+1]]==0&&board[r+moves[2*i]][c+moves[2*i+1]]<least){
+      movenum=i;
+      multiple=0;
   }
+  }
+}
   public String ChanceString(){
     String s="";
     for (int i=0;i<board.length;i++){
