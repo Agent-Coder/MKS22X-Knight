@@ -160,7 +160,7 @@ public class Optimize{
               k=10;
             }
             else{
-              if(i==7){
+              if(k==movenums.size()-1){
                 movenums.add(board[r+moves[2*i]][c+moves[2*i+1]]);
                 ordermoves.add(i);
               }
@@ -184,7 +184,7 @@ public class Optimize{
     return s;
   }
   public static void main(String[] args) {
-    Optimize a= new Optimize(8,8);
+    Optimize a= new Optimize(5,10);
     a.solveH(0,0,1);
     System.out.println(a);
   }
