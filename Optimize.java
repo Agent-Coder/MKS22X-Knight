@@ -123,33 +123,53 @@ public class Optimize{
       return false;
     }
   }
+
+  public boolean solveH(int row,int col,int level){
+    if(level>=sequence.length*sequence[0].length+1){
+      return true;
+    }
+    if(addKnight(row,col,level)){
+      ArrayList<Integer> order=this.findLeast(row,col);
+      for (int i=0;i<order.size();i++){
+        if(solveH(row+moves[2*i],col+moves[2*i+1],level+1)){
+          return true;
+        }
+      }
+      removeKnight(row,col);
+    }
+      return false;
+  }
+
   public ArrayList<Integer> findLeast(int r,int c){
     ArrayList<Integer> movenums=new ArrayList<Integer>();
-    movenums.add(board[r+moves[0]][c+moves[1]]);
     ArrayList<Integer> ordermoves=new ArrayList<Integer>();
-    ordermoves.add(0);
-    for(int i=1;i<8;i++){
-      for (int k=0;k<movenums.size();k++) {
-        if(r+moves[2*i]>=0&&c+moves[2*i+1]>=0&&r+moves[2*i]<board.length&&c+moves[2*i+1]<board[0].length){
-          if(board[r+moves[2*i]][c+moves[2*i+1]]<=movenums.get(k)){
-            movenums.add(k,board[r+moves[2*i]][c+moves[2*i+1]]);
-            ordermoves.add(k,i);
-            k=10;
-          }
-          else{
-            if(i==7){
-              movenums.add(board[r+moves[2*i]][c+moves[2*i+1]]);
-              ordermoves.add(i);
+    for(int i=0;i<8;i++){
+      if(r+moves[2*i]>=0&&c+moves[2*i+1]>=0&&r+moves[2*i]<board.length&&c+moves[2*i+1]<board[0].length){
+        if(movenums.size()==0){
+          movenums.add(board[r+moves[2*i]][c+moves[2*i+1]]);
+          ordermoves.add(i);
+        }
+        else{
+          for (int k=0;k<movenums.size();k++) {
+            if(board[r+moves[2*i]][c+moves[2*i+1]]<=movenums.get(k)){
+              movenums.add(k,board[r+moves[2*i]][c+moves[2*i+1]]);
+              ordermoves.add(k,i);
+              k=10;
+            }
+            else{
+              if(i==7){
+                movenums.add(board[r+moves[2*i]][c+moves[2*i+1]]);
+                ordermoves.add(i);
+              }
             }
           }
         }
-        else{
-          k=10;
-        }
       }
     }
-    return ordermoves;
+      return ordermoves;
   }
+
+
   public String ChanceString(){
     String s="";
     for (int i=0;i<board.length;i++){
@@ -161,7 +181,8 @@ public class Optimize{
     return s;
   }
   public static void main(String[] args) {
-    Optimize a= new Optimize(5,5);
-    System.out.println(a.ChanceString());
+    Optimize a= new Optimize(4,4);
+    a.solveH(0,0,1);
+    System.out.println(a);
   }
 }
