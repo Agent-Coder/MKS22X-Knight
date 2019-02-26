@@ -91,10 +91,10 @@ public class Optimize{
     for (int i=0;i<game.length;i++){
       s+="\n";
       for (int j=0;j<game[0].length;j++){
-        if(game[i][j]==0){
+      /*  if(game[i][j]==0){
           s+="_ ";
         }
-        else if (game[i][j]<=9){
+        else*/ if (game[i][j]<=9){
           s+=" "+game[i][j]+" ";
         }
         else{
@@ -125,15 +125,18 @@ public class Optimize{
   }
 
   public boolean solveH(int row,int col,int level){
-    if(level>=sequence.length*sequence[0].length+1){
+    if(level>=game.length*game[0].length+1){
       return true;
     }
     if(addKnight(row,col,level)){
       ArrayList<Integer> order=this.findLeast(row,col);
       for (int i=0;i<order.size();i++){
-        if(solveH(row+moves[2*i],col+moves[2*i+1],level+1)){
+        if(solveH(row+moves[2*order.get(i)],col+moves[2*order.get(i)+1],level+1)){
           return true;
         }
+      }
+      if(solveH(board.length,board[0].length,level+1)){
+        return true;
       }
       removeKnight(row,col);
     }
@@ -181,7 +184,7 @@ public class Optimize{
     return s;
   }
   public static void main(String[] args) {
-    Optimize a= new Optimize(4,4);
+    Optimize a= new Optimize(8,8);
     a.solveH(0,0,1);
     System.out.println(a);
   }
