@@ -199,9 +199,9 @@ public class Optimize{
     }
     return s;
   }
-  public static void main(String[] args) {
+  //public static void main(String[] args) {
     //Optimize a= new Optimize(60,60);
     //a.solveH(0,0,1);
     //System.out.println(a);
-  }
+  //}
 }
