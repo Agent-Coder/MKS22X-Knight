@@ -74,6 +74,11 @@ public class Optimize{
   public boolean addKnight(int r,int c,int num){
     if (r>=0&&r<game.length&&c>=0&&c<game[0].length&&game[r][c]==0){
       game[r][c]=num;
+      for (int i=0;i<8 ;i++ ) {
+        if(r+moves[2*i]>=0&&c+moves[2*i+1]>=0&&r+moves[2*i]<board.length&&c+moves[2*i+1]<board[0].length){
+          board[r+moves[2*i]][c+moves[2*i+1]]=board[r+moves[2*i]][c+moves[2*i+1]]-1;
+        }
+      }
       return true;
     }
     return false;
@@ -81,6 +86,11 @@ public class Optimize{
   public boolean removeKnight(int r,int c){
     if (r>=0&&r<game.length&&c>=0&&c<game[0].length){
       game[r][c]=0;
+      for (int i=0;i<8 ;i++ ) {
+        if(r+moves[2*i]>=0&&c+moves[2*i+1]>=0&&r+moves[2*i]<board.length&&c+moves[2*i+1]<board[0].length){
+          board[r+moves[2*i]][c+moves[2*i+1]]=board[r+moves[2*i]][c+moves[2*i+1]]+1;
+        }
+      }
       return true;
     }
     return false;
@@ -129,7 +139,13 @@ public class Optimize{
       return true;
     }
     if(addKnight(row,col,level)){
+      //System.out.println(this);
+      //System.out.println(this.ChanceString());
       ArrayList<Integer> order=this.findLeast(row,col);
+      //System.out.println("");
+      /*for (int a=0;a<order.size();a++ ) {
+        System.out.print(order.get(a)+",");
+      }*/
       for (int i=0;i<order.size();i++){
         if(solveH(row+moves[2*order.get(i)],col+moves[2*order.get(i)+1],level+1)){
           return true;
@@ -184,7 +200,7 @@ public class Optimize{
     return s;
   }
   public static void main(String[] args) {
-    Optimize a= new Optimize(5,10);
+    Optimize a= new Optimize(8,8);
     a.solveH(0,0,1);
     System.out.println(a);
   }
