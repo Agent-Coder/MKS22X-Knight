@@ -125,9 +125,9 @@ public class Optimize{
     if(startingRow<0&&startingCol<0){
       throw new IllegalArgumentException();
     }
-  //  if (solveH(startingRow,startingCol,1)){
-    //  return true;
-    //}
+    if (solveH(startingRow,startingCol,1)){
+      return true;
+    }
     else{
       this.clear();
       return false;
