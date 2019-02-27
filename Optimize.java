@@ -173,7 +173,7 @@ public class Optimize{
             if(board[r+moves[2*i]][c+moves[2*i+1]]<=movenums.get(k)){
               movenums.add(k,board[r+moves[2*i]][c+moves[2*i+1]]);
               ordermoves.add(k,i);
-              k=10;
+              k=movenums.size();
             }
             else{
               if(k==movenums.size()-1){
@@ -200,8 +200,8 @@ public class Optimize{
     return s;
   }
   public static void main(String[] args) {
-    Optimize a= new Optimize(8,8);
-    a.solveH(0,0,1);
-    System.out.println(a);
+    //Optimize a= new Optimize(60,60);
+    //a.solveH(0,0,1);
+    //System.out.println(a);
   }
 }
